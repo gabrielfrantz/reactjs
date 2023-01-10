@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.texto-caixa-alta{
+  font-size: 40px;
+}
+
+.borda-vermelha{
+  border: 5px solid red;
+  width: 400px;
+  height: 400px;
+}
+
+.borda-azul{
+  border: 5px solid blue;
+  width: 400px;
+  height: 400px;
+}

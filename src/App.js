@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
 
 function App() {
+
+  const [isOn, setIsOn] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Title text="Olá" />
+      {isOn && <Input />}
+      <button onClick={() => setIsOn((prev) => !prev)}>remove</button>
     </div>
   );
-}
+};
+
+const Title = ({ text = "Texto padrão" }) => {
+  return (
+    <h1>{text}</h1>
+  );
+};
+
+const Input = () => {
+  const [valor, setValor] = useState("");
+  useEffect(() => {
+    document.title = "OmegaSec"
+    console.log("effect")
+    return () => {
+      document.title = "React App"
+    }
+  }, [])
+
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    setValor(value);
+  }
+
+  return (
+    <input type={"text"} value={valor} onChange={handleInputChange}></input>
+  );
+};
 
 export default App;
