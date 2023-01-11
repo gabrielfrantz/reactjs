@@ -1,41 +1,29 @@
-import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import GlobalStyle from "./globalStyles";
 
 function App() {
-
-  const [isOn, setIsOn] = useState(true);
-
   return (
-    <div>
-      <Title text="Olá" />
-      {isOn && <Input />}
-      <button onClick={() => setIsOn((prev) => !prev)}>remove</button>
-    </div>
+    <Router>
+      <GlobalStyle></GlobalStyle>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Hero />} />
+        <Route path="/ofertas" element={<Ofertas />} />
+      </Routes>
+    </Router>
   );
 };
 
-const Title = ({ text = "Texto padrão" }) => {
+function Hero() {
   return (
-    <h1>{text}</h1>
+    <section id={"hero"}>Sua infraestrutura livre de ameaças online</section>
   );
 };
 
-const Input = () => {
-  const [valor, setValor] = useState("");
-  useEffect(() => {
-    document.title = "OmegaSec"
-    console.log("effect")
-    return () => {
-      document.title = "React App"
-    }
-  }, [])
-
-  const handleInputChange = (event) => {
-    const { value } = event.target;
-    setValor(value);
-  }
-
+function Ofertas() {
   return (
-    <input type={"text"} value={valor} onChange={handleInputChange}></input>
+    <section id={"ofertas"}>Nós oferecemos</section>
   );
 };
 
